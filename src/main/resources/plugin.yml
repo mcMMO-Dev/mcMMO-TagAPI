@@ -10,4 +10,3 @@ website: http://dev.bukkit.org/server-mods/mcmmo-tagapi/
 
 main: org.mcmmo.mcmmotagapi.mcMMOTagAPI
 softdepend: [mcMMO, TagAPI]
-load: STARTUP
