@@ -1,0 +1,22 @@
+#
+#  mcMMO-TagAPI configuration
+#  Last updated on ${project.version}-b${BUILD_NUMBER}
+#
+#####
+
+#
+#  Settings for mcMMO-TagAPI in general
+###
+General:
+    # Should mcMMO-TagAPI print out debug messages?
+    Verbose_Logging: false
+    # Should mcMMO-TagAPI over-write configs to update, or make new ones ending in .new?
+    Config_Update_Overwrite: true
+
+#
+#  Settings for TagAPI name plates
+###
+TagAPI:
+    Party:
+        Member_Color: AQUA
+        Allies_Color: BLUE

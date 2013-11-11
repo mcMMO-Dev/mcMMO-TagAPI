@@ -1,0 +1,12 @@
+Changelog:
+Versions without changelogs probably had very small misc fixes, like tweaks to the source code
+
+Key:
+  + Addition
+  = Fix
+  ! Change
+  - Removal
+  
+Version 1.0.0-dev
+ + First release
+ + Adds colored name plates for party members

@@ -1,0 +1,13 @@
+name: mcMMO-TagAPI
+version: ${project.version}-b${BUILD_NUMBER}
+description: >
+  mcMMO-TagAPI is an extra plugin for mcMMO. It uses TagAPI to give certain players
+  colored nameplates. For example, party members can easily recognise each other
+  because their names are colored.
+
+author: TfT_02
+website: http://dev.bukkit.org/server-mods/mcmmo-tagapi/
+
+main: org.mcmmo.mcmmotagapi.mcMMOTagAPI
+softdepend: [mcMMO, TagAPI]
+load: STARTUP
