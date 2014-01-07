@@ -35,6 +35,15 @@ public class Config extends AutoUpdateConfigLoader {
         }
     }
 
+    public ChatColor getPartyAllyColor() {
+        try {
+            return ChatColor.valueOf(config.getString("TagAPI.Party.Ally_Color", "BLUE").toUpperCase().trim());
+        }
+        catch (IllegalArgumentException ex) {
+            return ChatColor.BLUE;
+        }
+    }
+
     public boolean getStatsTrackingEnabled() { return config.getBoolean("General.Stats_Tracking", true); }
     public boolean getUpdateCheckEnabled() { return config.getBoolean("General.Update_Check", true); }
     public boolean getPreferBeta() { return config.getBoolean("General.Prefer_Beta", false); }

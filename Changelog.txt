@@ -10,3 +10,4 @@ Key:
 Version 1.0.0-dev
  + First release
  + Adds colored name plates for party members
+ + Adds colored name plates for party alliances

@@ -16,9 +16,19 @@ public class TagListener implements Listener {
     public void onPlayerReceiveNameTag(PlayerReceiveNameTagEvent event) {
         Player player = event.getPlayer();
         Player namedPlayer = event.getNamedPlayer();
+        String partyName = null;
 
-        if (PartyAPI.inParty(player) && PartyAPI.getOnlineMembers(player).contains(namedPlayer)) {
+        boolean inParty = PartyAPI.inParty(player);
+
+        if (inParty) {
+            partyName = PartyAPI.getPartyName(player);
+        }
+
+        if (inParty && PartyAPI.getOnlineMembers(player).contains(namedPlayer)) {
             event.setTag(Config.getInstance().getPartyMemberColor() + namedPlayer.getDisplayName());
+        }
+        else if (inParty && PartyAPI.hasAlly(partyName) && PartyAPI.getOnlineMembers(PartyAPI.getAllyName(partyName)).contains(namedPlayer)) {
+            event.setTag(Config.getInstance().getPartyAllyColor() + namedPlayer.getDisplayName());
         }
         else {
             event.setTag(namedPlayer.getDisplayName());
