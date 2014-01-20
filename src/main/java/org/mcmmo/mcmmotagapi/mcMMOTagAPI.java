@@ -6,7 +6,8 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import org.mcmmo.mcmmotagapi.config.Config;
-import org.mcmmo.mcmmotagapi.listeners.McMMOListener;
+import org.mcmmo.mcmmotagapi.listeners.AllianceListener;
+import org.mcmmo.mcmmotagapi.listeners.PartyListener;
 import org.mcmmo.mcmmotagapi.listeners.TagListener;
 import org.mcmmo.mcmmotagapi.util.LogFilter;
 
@@ -15,6 +16,8 @@ public class mcMMOTagAPI extends JavaPlugin {
 
     private boolean mcMMOEnabled = false;
     private boolean tagAPIEnabled = false;
+
+    private boolean allianceEventPresent;
 
     /**
      * Things to be run when the plugin is enabled.
@@ -29,16 +32,18 @@ public class mcMMOTagAPI extends JavaPlugin {
             setupTagAPI();
 
             if (!isMcMMOEnabled()) {
-                this.getLogger().log(Level.WARNING, " requires mcMMO to run, please download mcMMO. http://dev.bukkit.org/server-mods/mcmmo/");
+                this.getLogger().log(Level.WARNING, "mcMMO-TagAPI requires mcMMO to run, please download mcMMO. http://dev.bukkit.org/server-mods/mcmmo/");
                 getServer().getPluginManager().disablePlugin(this);
                 return;
             }
 
             if (!isTagAPIEnabled()) {
-                this.getLogger().log(Level.WARNING, " requires TagAPI to run, please download TagAPI. http://dev.bukkit.org/server-mods/tag/");
+                this.getLogger().log(Level.WARNING, "mcMMO-TagAPI requires TagAPI to run, please download TagAPI. http://dev.bukkit.org/server-mods/tag/");
                 getServer().getPluginManager().disablePlugin(this);
                 return;
             }
+
+            allianceEventPresent = checkAllianceEventEnabled();
 
             Config.getInstance();
 
@@ -71,6 +76,27 @@ public class mcMMOTagAPI extends JavaPlugin {
     }
 
     /**
+     * Check mcMMO version
+     * McMMOPartyAllianceChangeEvent was added in 1.4.08-dev-b3452
+     */
+    private boolean checkAllianceEventEnabled() {
+        String[] version = getServer().getPluginManager().getPlugin("mcMMO").getDescription().getVersion().split("-");
+
+        if (Integer.parseInt(version[0].replaceAll("[.]", "")) > 1408) {
+            debug("mcMMO version 1.4.08+ found!");
+            return true;
+        }
+
+        if (Integer.parseInt(version[(version.length - 1)].replace("b", "")) >= 3452) {
+            debug("mcMMO build 3452+ found!");
+            return true;
+        }
+
+        debug("This mcMMO version does not have McMMOPartyAllianceChangeEvent");
+        return false;
+    }
+
+    /**
      * Things to be run when the plugin is disabled.
      */
     @Override
@@ -93,7 +119,11 @@ public class mcMMOTagAPI extends JavaPlugin {
         PluginManager pluginManager = getServer().getPluginManager();
 
         // Register events
-        pluginManager.registerEvents(new McMMOListener(), this);
+        pluginManager.registerEvents(new PartyListener(), this);
         pluginManager.registerEvents(new TagListener(), this);
+
+        if (allianceEventPresent) {
+            pluginManager.registerEvents(new AllianceListener(), this);
+        }
     }
 }
