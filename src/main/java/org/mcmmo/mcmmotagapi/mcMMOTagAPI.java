@@ -1,7 +1,5 @@
 package org.mcmmo.mcmmotagapi;
 
-import java.util.logging.Level;
-
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -32,13 +30,19 @@ public class mcMMOTagAPI extends JavaPlugin {
             setupTagAPI();
 
             if (!isMcMMOEnabled()) {
-                this.getLogger().log(Level.WARNING, "mcMMO-TagAPI requires mcMMO to run, please download mcMMO. http://dev.bukkit.org/server-mods/mcmmo/");
+                this.getLogger().warning("mcMMO-TagAPI requires mcMMO to run, please download mcMMO. http://dev.bukkit.org/server-mods/mcmmo/");
                 getServer().getPluginManager().disablePlugin(this);
                 return;
             }
 
             if (!isTagAPIEnabled()) {
-                this.getLogger().log(Level.WARNING, "mcMMO-TagAPI requires TagAPI to run, please download TagAPI. http://dev.bukkit.org/server-mods/tag/");
+                this.getLogger().warning("mcMMO-TagAPI requires TagAPI to run, please download TagAPI. http://dev.bukkit.org/server-mods/tag/");
+                getServer().getPluginManager().disablePlugin(this);
+                return;
+            }
+
+            if (!checkTagVersion()) {
+                this.getLogger().warning("You need a newer version of TagAPI! Get it at http://dev.bukkit.org/server-mods/tag/");
                 getServer().getPluginManager().disablePlugin(this);
                 return;
             }
@@ -94,6 +98,22 @@ public class mcMMOTagAPI extends JavaPlugin {
 
         debug("This mcMMO version does not have McMMOPartyAllianceChangeEvent");
         return false;
+    }
+
+    /**
+     * Check TagAPI version
+     * AsyncPlayerReceiveNameTagEvent was added in 3.0
+     */
+    private boolean checkTagVersion() {
+        try {
+            Class.forName("org.kitteh.tag.AsyncPlayerReceiveNameTagEvent");
+        }
+        catch (final ClassNotFoundException e) {
+            debug("This TagAPI version does not have AsyncPlayerReceiveNameTagEvent");
+            return false;
+        }
+
+        return true;
     }
 
     /**

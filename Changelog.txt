@@ -6,9 +6,10 @@ Key:
   = Fix
   ! Change
   - Removal
-  
+
 Version 1.0.1-dev
-  
+ ! Updated for TagAPI v3.0
+
 Version 1.0.0
  + First release
  + Adds colored name plates for party members

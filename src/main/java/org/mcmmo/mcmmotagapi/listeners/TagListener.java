@@ -7,16 +7,20 @@ import org.bukkit.event.Listener;
 
 import com.gmail.nossr50.api.PartyAPI;
 
-import org.kitteh.tag.PlayerReceiveNameTagEvent;
+import org.kitteh.tag.AsyncPlayerReceiveNameTagEvent;
 import org.mcmmo.mcmmotagapi.config.Config;
 
 public class TagListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
-    public void onPlayerReceiveNameTag(PlayerReceiveNameTagEvent event) {
+    public void onAsyncPlayerReceiveNameTag(AsyncPlayerReceiveNameTagEvent event) {
         Player player = event.getPlayer();
         Player namedPlayer = event.getNamedPlayer();
         String partyName = null;
+
+        if (!event.isAsynchronous()) {
+            return;
+        }
 
         boolean inParty = PartyAPI.inParty(player);
 
