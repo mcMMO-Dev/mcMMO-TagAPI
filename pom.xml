@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.mcmmo</groupId>
     <artifactId>mcMMO-TagAPI</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2-dev</version>
     <name>mcMMO-TagAPI</name>
     <url>https://github.com/mcMMO-Dev/mcMMO-TagAPI</url>
     <issueManagement>
