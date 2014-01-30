@@ -86,14 +86,26 @@ public class mcMMOTagAPI extends JavaPlugin {
     private boolean checkAllianceEventEnabled() {
         String[] version = getServer().getPluginManager().getPlugin("mcMMO").getDescription().getVersion().split("-");
 
-        if (Integer.parseInt(version[0].replaceAll("[.]", "")) > 1408) {
-            debug("mcMMO version 1.4.08+ found!");
-            return true;
+        try {
+            if (Integer.parseInt(version[0].replaceAll("[.]", "")) > 1408) {
+                debug("mcMMO version 1.4.08+ found!");
+                return true;
+            }
+        }
+        catch (NumberFormatException ignored) {
+            getLogger().warning("Could not determine mcMMO version (are you using a custom one?), assuming that it's outdated.");
+            return false;
         }
 
-        if (Integer.parseInt(version[(version.length - 1)].replace("b", "")) >= 3452) {
-            debug("mcMMO build 3452+ found!");
-            return true;
+        try {
+            if (Integer.parseInt(version[(version.length - 1)].replace("b", "")) >= 3452) {
+                debug("mcMMO build 3452+ found!");
+                return true;
+            }
+        }
+        catch (NumberFormatException ignored) {
+            getLogger().warning("Could not determine mcMMO build (are you using a custom one?), assuming that it's outdated.");
+            return false;
         }
 
         debug("This mcMMO version does not have McMMOPartyAllianceChangeEvent");
