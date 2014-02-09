@@ -18,10 +18,6 @@ public class TagListener implements Listener {
         Player namedPlayer = event.getNamedPlayer();
         String partyName = null;
 
-        if (!event.isAsynchronous()) {
-            return;
-        }
-
         boolean inParty = PartyAPI.inParty(player);
 
         if (inParty) {

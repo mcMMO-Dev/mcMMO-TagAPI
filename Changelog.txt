@@ -8,6 +8,7 @@ Key:
   - Removal
 
 Version 1.0.2-dev
+ ! Doesn’t ignore synch events
 
 Version 1.0.1
  ! Updated for TagAPI v3.0
