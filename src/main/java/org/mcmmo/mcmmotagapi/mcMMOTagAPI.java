@@ -147,6 +147,10 @@ public class mcMMOTagAPI extends JavaPlugin {
         return tagAPIEnabled;
     }
 
+    public boolean isAllianceEventPresent() {
+        return allianceEventPresent;
+    }
+
     private void registerEvents() {
         PluginManager pluginManager = getServer().getPluginManager();
 

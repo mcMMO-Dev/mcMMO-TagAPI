@@ -9,6 +9,7 @@ import com.gmail.nossr50.api.PartyAPI;
 
 import org.kitteh.tag.AsyncPlayerReceiveNameTagEvent;
 import org.mcmmo.mcmmotagapi.config.Config;
+import org.mcmmo.mcmmotagapi.mcMMOTagAPI;
 
 public class TagListener implements Listener {
 
@@ -27,7 +28,7 @@ public class TagListener implements Listener {
         if (inParty && PartyAPI.getOnlineMembers(player).contains(namedPlayer)) {
             event.setTag(Config.getInstance().getPartyMemberColor() + namedPlayer.getDisplayName());
         }
-        else if (inParty && PartyAPI.hasAlly(partyName) && PartyAPI.getOnlineMembers(PartyAPI.getAllyName(partyName)).contains(namedPlayer)) {
+        else if (mcMMOTagAPI.p.isAllianceEventPresent() && inParty && PartyAPI.hasAlly(partyName) && PartyAPI.getOnlineMembers(PartyAPI.getAllyName(partyName)).contains(namedPlayer)) {
             event.setTag(Config.getInstance().getPartyAllyColor() + namedPlayer.getDisplayName());
         }
         else {
