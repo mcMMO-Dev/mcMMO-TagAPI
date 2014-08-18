@@ -8,6 +8,7 @@ Key:
   - Removal
 
 Version 1.0.3-dev
+ = Fix bug where display names were used instead of usernames
 
 Version 1.0.2
  ! Doesn’t ignore synch events

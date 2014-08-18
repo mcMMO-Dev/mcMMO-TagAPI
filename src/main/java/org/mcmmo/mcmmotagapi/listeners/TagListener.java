@@ -26,13 +26,13 @@ public class TagListener implements Listener {
         }
 
         if (inParty && PartyAPI.getOnlineMembers(player).contains(namedPlayer)) {
-            event.setTag(Config.getInstance().getPartyMemberColor() + namedPlayer.getDisplayName());
+            event.setTag(Config.getInstance().getPartyMemberColor() + namedPlayer.getName());
         }
         else if (mcMMOTagAPI.p.isAllianceEventPresent() && inParty && PartyAPI.hasAlly(partyName) && PartyAPI.getOnlineMembers(PartyAPI.getAllyName(partyName)).contains(namedPlayer)) {
-            event.setTag(Config.getInstance().getPartyAllyColor() + namedPlayer.getDisplayName());
+            event.setTag(Config.getInstance().getPartyAllyColor() + namedPlayer.getName());
         }
         else {
-            event.setTag(namedPlayer.getDisplayName());
+            event.setTag(namedPlayer.getName());
         }
     }
 }
