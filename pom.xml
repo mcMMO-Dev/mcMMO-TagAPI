@@ -118,7 +118,7 @@
             <artifactId>bukkit</artifactId>
             <version>LATEST</version>
             <type>jar</type>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.gmail.nossr50.mcMMO</groupId>
@@ -137,7 +137,7 @@
             <groupId>org.kitteh</groupId>
             <artifactId>tagapi</artifactId>
             <version>LATEST</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
     <distributionManagement>
