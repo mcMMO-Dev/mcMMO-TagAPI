@@ -7,11 +7,11 @@ Key:
   ! Change
   - Removal
 
-Version 1.0.3-dev
+Version 1.0.3
  = Fix bug where display names were used instead of usernames
 
 Version 1.0.2
- ! Doesn’t ignore synch events
+ ! Doesn’t ignore sync events
  = Fix compatibility with older mcMMO versions
 
 Version 1.0.1

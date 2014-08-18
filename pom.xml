@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.mcmmo</groupId>
     <artifactId>mcMMO-TagAPI</artifactId>
-    <version>1.0.3-dev</version>
+    <version>1.0.3</version>
     <name>mcMMO-TagAPI</name>
     <url>https://github.com/mcMMO-Dev/mcMMO-TagAPI</url>
     <issueManagement>
@@ -55,18 +55,6 @@
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>1.5</version>
                 <configuration>
-                    <artifactSet>
-                        <includes>
-                            <include>com.gmail.nossr50.mcMMO:mcMMO</include>
-                            <include>org.mcstats.bukkit:metrics</include>
-                        </includes>
-                    </artifactSet>
-                    <relocations>
-                        <relocation>
-                            <pattern>org.mcstats</pattern>
-                            <shadedPattern>org.mcmmo.mcmmomc.mcstats</shadedPattern>
-                        </relocation>
-                    </relocations>
                     <filters>
                         <filter>
                             <artifact>com.gmail.nossr50.mcMMO:mcMMO</artifact>
@@ -104,10 +92,6 @@
             <url>http://repo.md-5.net/</url>
         </repository>
         <repository>
-            <id>Plugin Metrics</id>
-            <url>http://repo.mcstats.org/content/repositories/public</url>
-        </repository>
-        <repository>
             <id>TagAPI</id>
             <url>http://repo.kitteh.org/content/repositories/public/</url>
         </repository>
@@ -123,14 +107,8 @@
         <dependency>
             <groupId>com.gmail.nossr50.mcMMO</groupId>
             <artifactId>mcMMO</artifactId>
-            <version>RELEASE</version>
+            <version>1.5.01-SNAPSHOT</version>
             <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mcstats.bukkit</groupId>
-            <artifactId>metrics</artifactId>
-            <version>R6</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

@@ -5,11 +5,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
+import org.mcmmo.mcmmotagapi.config.Config;
+import org.mcmmo.mcmmotagapi.mcMMOTagAPI;
+
 import com.gmail.nossr50.api.PartyAPI;
 
 import org.kitteh.tag.AsyncPlayerReceiveNameTagEvent;
-import org.mcmmo.mcmmotagapi.config.Config;
-import org.mcmmo.mcmmotagapi.mcMMOTagAPI;
 
 public class TagListener implements Listener {
 
